@@ -4,22 +4,22 @@ import { motion } from "framer-motion";
 const socialLinks = [
   {
     icon: <FaEnvelope />,
-    link: "mailto:jeyadheesh@example.com",
+    link: "mailto:bharshini2004@gmail.com",
     label: "Email",
   },
   {
     icon: <FaLinkedin />,
-    link: "https://linkedin.com/in/jeyadheesh",
+    link: "https://www.linkedin.com/in/harshini5204/",
     label: "LinkedIn",
   },
   {
     icon: <FaGithub />,
-    link: "https://github.com/jeyadheesh",
+    link: "https://github.com/harshini5204",
     label: "GitHub",
   },
   {
     icon: <FaInstagram />,
-    link: "https://instagram.com/jeyadheesh",
+    link: "https://www.instagram.com/h_a_a_s_i_p_a_p_a/",
     label: "Instagram",
   },
 ];
