@@ -29,7 +29,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center gap-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">
-          <span className="hidden sm:inline">Harshini</span>
+          <img src="/Hlogo.svg" alt="Logo" className="w-20 h-20" />
         </div>
 
         {/* Desktop Nav Links */}
