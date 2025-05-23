@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
+import profileImage from "../assets/profile.jpg"; // Adjust the path as necessary
 
 export default function Hero() {
   return (
-    <section className="h-screen flex items-center bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+    <section
+      id="home"
+      className="h-screen flex items-center bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-900"
+    >
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
         {/* Profile Photo with Glow */}
         <motion.div
@@ -13,7 +17,7 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <img
-            // src={profileImage}
+            src={profileImage}
             alt="Profile"
             className="w-full h-full object-cover"
           />

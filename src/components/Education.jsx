@@ -28,7 +28,10 @@ const educationList = [
 
 export default function Education() {
   return (
-    <section className="py-16 px-6 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-900">
+    <section
+      id="education"
+      className="py-16 px-6 bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-900"
+    >
       <motion.div
         className="max-w-4xl mx-auto"
         initial={{ opacity: 0 }}

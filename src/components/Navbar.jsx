@@ -7,8 +7,9 @@ import { IoSunnyOutline } from "react-icons/io5";
 
 const navLinks = [
   "Home",
-  "About",
   "Skills",
+  "Experience",
+  "Education",
   "Projects",
   "Certificates",
   "Contact",
