@@ -1,12 +1,82 @@
-# React + Vite
+# Harshini B — Software Development Engineer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Personal portfolio for Harshini B, a Software Development Engineer focused on
+production web applications, full-stack development, and understanding systems
+across the browser, API, backend, and database layers.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Professional experience presented before academic projects
+- Engineering mindset section covering the request path across system layers
+- Real-time ECG monitoring case study using WebSockets and PostgreSQL
+- Selected GitHub work and current engineering learning roadmap
+- Responsive light and dark themes
+- Accessible navigation, focus states, and reduced-motion support
+- Resume, GitHub, LinkedIn, and email contact links
 
-## Expanding the ESLint configuration
+## Built with
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Icons
+- JavaScript
+
+## Run locally
+
+Requirements:
+
+- Node.js 18 or newer
+- npm
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Run lint checks:
+
+```bash
+npm run lint
+```
+
+## Project structure
+
+```text
+src/
+├── components/       Reusable portfolio sections and UI components
+├── data/             Professional profile, experience, projects, and skills
+├── App.jsx           Page composition
+├── index.css         Global styles and theme tokens
+└── main.jsx          React entry point
+public/
+└── Harshini_B.pdf    Resume linked from the portfolio
+```
+
+## Links
+
+- [Source repository](https://github.com/harshini5204/portfolio)
+- [GitHub](https://github.com/harshini5204)
+- [LinkedIn](https://www.linkedin.com/in/harshini5204/)
+- [Resume](./public/Harshini_B.pdf)
+
+## Notes
+
+The portfolio content is maintained in
+[`src/data/content.js`](./src/data/content.js), so profile details,
+experience, skills, and project information can be updated without changing
+the presentation components.
