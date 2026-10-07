@@ -1,72 +1,67 @@
-import { motion } from "framer-motion";
+import { education, experience } from "../data/content";
+import Reveal, { SectionHeading } from "./Reveal";
 
 export default function Experience() {
   return (
-    <motion.section
-      id="experience"
-      className="bg-white dark:bg-gray-800 shadow p-6"
-      whileHover={{ scale: 1.02, boxShadow: "0 10px 25px rgba(0, 0, 0, 0.2)" }}
-      transition={{ type: "spring", stiffness: 300 }}
-    >
-      <h2 className="text-4xl font-bold text-center text-gray-900 dark:text-white mb-12">
-        Experience
-      </h2>
+    <section id="experience" className="px-5 py-20 sm:px-8">
+      <div className="mx-auto max-w-page">
+        <Reveal>
+          <SectionHeading
+            kicker="Experience"
+            title="Professional work first."
+            description="Production engineering at QuarkSek — intern through Associate SDE."
+          />
+        </Reveal>
 
-      <div className="max-w-4xl mx-auto space-y-10">
-        {/* Full-Time Experience (slide from left) */}
-        <motion.div
-          className="bg-white dark:bg-gray-800 rounded-xl shadow p-6"
-          initial={{ opacity: 0, x: -100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
-            Associate Software Development Engineer
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            QuarkSek Technologies | April 2025 – Ongoing
-          </p>
-          <ul className="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300 space-y-2">
-            <li>Promoted from intern to full-time based on performance.</li>
-            <li>
-              Built scalable web apps using React.js, TypeScript, Express.js,
-              PostgreSQL, and Prisma.
-            </li>
-            <li>Worked on real-time projects in an Agile environment.</li>
-            <li>
-              Received a Spot Award for the successful release of the Pengate
-              application.
-            </li>
-          </ul>
-        </motion.div>
+        <div className="space-y-8">
+          {experience.map((job) => (
+            <Reveal key={`${job.role}-${job.period}`}>
+              <article className="rounded-2xl border border-line bg-elevated p-6 sm:p-8">
+                <div className="flex flex-col gap-2 border-b border-line pb-5 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <h3 className="text-xl font-medium text-ink sm:text-2xl">
+                      {job.role}
+                    </h3>
+                    <p className="mt-1 text-muted">{job.company}</p>
+                  </div>
+                  <p className="font-mono text-xs uppercase tracking-[0.14em] text-accent">
+                    {job.period}
+                    {job.current ? " · Current" : ""}
+                  </p>
+                </div>
 
-        {/* Internship Experience (slide from right) */}
-        <motion.div
-          className="bg-white dark:bg-gray-800 rounded-xl shadow p-6"
-          initial={{ opacity: 0, x: 100 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
-            Software Development Engineer Intern
-          </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400">
-            QuarkSek Technologies | Internship
+                <ul className="mt-5 flex flex-wrap gap-2" aria-label="Technologies">
+                  {job.technologies.map((tech) => (
+                    <li
+                      key={tech}
+                      className="rounded-full border border-line px-3 py-1 font-mono text-[11px] text-muted"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+
+                <ul className="mt-6 space-y-3 text-[15px] leading-relaxed text-muted">
+                  {job.points.map((point) => (
+                    <li key={point} className="flex gap-3">
+                      <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="mt-10">
+          <p className="text-sm text-muted" id="education">
+            <span className="font-medium text-ink">Education. </span>
+            {education.degree}, {education.school}. {education.period}.{" "}
+            {education.note}.
           </p>
-          <ul className="list-disc list-inside mt-3 text-gray-700 dark:text-gray-300 space-y-2">
-            <li>Worked on frontend using React.js and TypeScript.</li>
-            <li>
-              Contributed to backend with Express.js, PostgreSQL, and Prisma.
-            </li>
-            <li>
-              Gained hands-on experience in building scalable applications.
-            </li>
-            <li>Enhanced skills in modern full-stack development practices.</li>
-          </ul>
-        </motion.div>
+        </Reveal>
       </div>
-    </motion.section>
+    </section>
   );
 }

@@ -1,15 +1,24 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
-  darkMode: "class", // Enable dark mode via class
+export default {
+  content: ["./index.html", "./src/**/*.{js,jsx}"],
+  darkMode: "class",
   theme: {
     extend: {
-      animation: {
-        "pulse-slow": "pulse 3s infinite",
-        "ping-slow": "ping 3s infinite",
+      colors: {
+        ink: "var(--ink)",
+        muted: "var(--muted)",
+        line: "var(--line)",
+        accent: "var(--accent)",
+        paper: "var(--bg)",
+        elevated: "var(--bg-elevated)",
       },
-      boxShadow: {
-        glow: "0 0 15px rgba(99, 102, 241, 0.5)",
+      fontFamily: {
+        sans: ["IBM Plex Sans", "system-ui", "sans-serif"],
+        display: ["Instrument Serif", "Georgia", "serif"],
+        mono: ["IBM Plex Mono", "ui-monospace", "monospace"],
+      },
+      maxWidth: {
+        page: "72rem",
       },
     },
   },

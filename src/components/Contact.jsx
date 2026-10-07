@@ -1,53 +1,52 @@
-import { motion } from "framer-motion";
-import { FiMail, FiUser, FiMessageSquare } from "react-icons/fi";
+import Reveal from "./Reveal";
+import { profile } from "../data/content";
 
 export default function Contact() {
   return (
-    <motion.section
+    <section
       id="contact"
-      className="relative px-6 py-16 bg-gradient-to-br dark:from-gray-800 dark:to-gray-900"
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
+      className="border-t border-line px-5 py-24 sm:px-8"
     >
-      <h2 className="text-4xl font-bold text-center text-gray-800 dark:text-white mb-12">
-        Get In Touch
-      </h2>
-
-      <form className="max-w-2xl mx-auto bg-white/70 dark:bg-gray-800/70 backdrop-blur-md rounded-xl shadow-xl p-8 space-y-6">
-        <div className="flex items-center gap-3 bg-gray-100 dark:bg-gray-700 p-3 rounded">
-          <FiUser className="text-gray-500 dark:text-gray-300" />
-          <input
-            type="text"
-            placeholder="Your Name"
-            className="w-full bg-transparent outline-none text-gray-800 dark:text-white placeholder-gray-500"
-          />
+      <Reveal>
+        <div className="mx-auto flex max-w-page flex-col gap-8 rounded-2xl border border-line bg-elevated p-6 sm:p-10 lg:flex-row lg:items-end lg:justify-between">
+          <div className="max-w-xl">
+            <p className="font-mono text-xs uppercase tracking-[0.22em] text-accent">
+              Contact
+            </p>
+            <h2 className="mt-3 font-display text-4xl leading-tight text-ink sm:text-5xl">
+              Let&apos;s build something meaningful.
+            </h2>
+            <p className="mt-4 leading-relaxed text-muted">
+              I&apos;m open to conversations about software engineering roles and thoughtful
+              product work.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={`mailto:${profile.email}`}
+              className="inline-flex min-h-11 items-center rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-[color:var(--bg)] hover:opacity-90"
+            >
+              Email me
+            </a>
+            <a
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center rounded-full border border-line px-5 py-2.5 text-sm text-ink hover:border-accent"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center rounded-full border border-line px-5 py-2.5 text-sm text-ink hover:border-accent"
+            >
+              Resume
+            </a>
+          </div>
         </div>
-
-        <div className="flex items-center gap-3 bg-gray-100 dark:bg-gray-700 p-3 rounded">
-          <FiMail className="text-gray-500 dark:text-gray-300" />
-          <input
-            type="email"
-            placeholder="Your Email"
-            className="w-full bg-transparent outline-none text-gray-800 dark:text-white placeholder-gray-500"
-          />
-        </div>
-
-        <div className="flex gap-3 bg-gray-100 dark:bg-gray-700 p-3 rounded">
-          <FiMessageSquare className="mt-2 text-gray-500 dark:text-gray-300" />
-          <textarea
-            placeholder="Your Message"
-            className="w-full bg-transparent outline-none text-gray-800 dark:text-white placeholder-gray-500 resize-none h-32"
-          ></textarea>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full py-3 bg-indigo-600 text-white font-semibold rounded-full hover:bg-indigo-700 transition-all"
-        >
-          Send Message
-        </button>
-      </form>
-    </motion.section>
+      </Reveal>
+    </section>
   );
 }

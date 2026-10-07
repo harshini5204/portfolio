@@ -1,53 +1,70 @@
-import { motion } from "framer-motion";
-import { TypeAnimation } from "react-type-animation";
-import profileImage from "../assets/profile.jpg"; // Adjust the path as necessary
+import { profile } from "../data/content";
+import SystemTrace from "./SystemTrace";
+import Reveal from "./Reveal";
+
+const ctas = [
+  { href: "#work", label: "View my work", primary: true, external: false },
+  { href: profile.github, label: "GitHub", primary: false, external: true },
+  { href: profile.linkedin, label: "LinkedIn", primary: false, external: true },
+  { href: profile.resume, label: "Resume", primary: false, external: true },
+];
 
 export default function Hero() {
   return (
     <section
       id="home"
-      className="h-screen flex items-center bg-gradient-to-br from-indigo-50 to-purple-50 dark:from-gray-800 dark:to-gray-900"
+      className="relative overflow-hidden px-5 pb-20 pt-28 sm:px-8 sm:pt-32"
     >
-      <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-        {/* Profile Photo with Glow */}
-        <motion.div
-          className="relative rounded-full shadow-2xl w-64 h-64 overflow-hidden border-8 border-indigo-500 animate-pulse-slow"
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.8 }}
-        >
-          <img
-            src={profileImage}
-            alt="Profile"
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute top-0 left-0 w-full h-full rounded-full border-4 border-indigo-300 animate-ping-slow" />
-        </motion.div>
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.35] dark:opacity-20"
+        aria-hidden="true"
+        style={{
+          backgroundImage:
+            "linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px)",
+          backgroundSize: "72px 72px",
+          maskImage:
+            "radial-gradient(ellipse 70% 60% at 50% 0%, black, transparent)",
+        }}
+      />
 
-        {/* Text Content */}
-        <motion.div
-          className="text-center md:text-left"
-          initial={{ x: 50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Hello, I'm Harshini
-          </h1>
-
-          <TypeAnimation
-            sequence={["Full Stack Developer", 2000, "Creative Coder 💡", 2000]}
-            wrapper="span"
-            speed={50}
-            repeat={Infinity}
-            className="text-xl md:text-2xl font-semibold text-indigo-600 dark:text-indigo-400"
-          />
-
-          <p className="mt-4 text-gray-700 dark:text-gray-300 max-w-lg">
-            I'm passionate about building interactive and beautiful web
-            experiences. I blend creativity with code to bring designs to life.
+      <div className="relative mx-auto grid max-w-page items-center gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(280px,0.9fr)]">
+        <Reveal>
+          <p className="font-mono text-xs uppercase tracking-[0.22em] text-accent">
+            {profile.role}
           </p>
-        </motion.div>
+          <h1 className="mt-4 font-display text-5xl leading-[0.95] text-ink sm:text-6xl lg:text-7xl">
+            {profile.name}
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted sm:text-xl">
+            {profile.headline}
+          </p>
+          <p className="mt-4 max-w-xl text-sm leading-relaxed text-muted">
+            {profile.summary}
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-3">
+            {ctas.map((cta) => (
+              <a
+                key={cta.label}
+                href={cta.href}
+                {...(cta.external
+                  ? { target: "_blank", rel: "noopener noreferrer" }
+                  : {})}
+                className={`inline-flex min-h-11 items-center rounded-full px-5 py-2.5 text-sm font-medium transition-colors ${
+                  cta.primary
+                    ? "bg-ink text-[color:var(--bg)] hover:opacity-90"
+                    : "border border-line text-ink hover:border-accent"
+                }`}
+              >
+                {cta.label}
+              </a>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.12}>
+          <SystemTrace />
+        </Reveal>
       </div>
     </section>
   );

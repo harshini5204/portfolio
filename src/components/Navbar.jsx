@@ -1,98 +1,107 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { FiMenu, FiX, FiFeather } from "react-icons/fi";
-import useTheme from "../theme";
+import { useEffect, useState } from "react";
+import { FiMenu, FiX } from "react-icons/fi";
 import { FaRegMoon } from "react-icons/fa";
 import { IoSunnyOutline } from "react-icons/io5";
-
-const navLinks = [
-  "Home",
-  "Skills",
-  "Experience",
-  "Education",
-  "Projects",
-  "Certificates",
-  "Contact",
-];
+import useTheme from "../theme";
+import { navLinks, profile } from "../data/content";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [theme, setTheme] = useTheme();
 
-  return (
-    <motion.nav
-      initial={{ y: -80 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed top-0 w-full z-50 backdrop-blur-lg bg-white/70 dark:bg-gray-900/70 shadow-md"
-    >
-      <div className="max-w-7xl mx-auto px-6 py-6 flex justify-between items-center">
-        {/* Logo */}
-        <div className="flex items-center gap-2 text-xl font-bold text-indigo-600 dark:text-indigo-400">
-          <img src="/Hlogo.svg" alt="Logo" className="w-20 h-20" />
-        </div>
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
 
-        {/* Desktop Nav Links */}
-        <ul className="hidden md:flex gap-8 text-gray-700 dark:text-gray-200 font-medium">
-          {navLinks.map((link, i) => (
-            <li key={i}>
+  useEffect(() => {
+    const onKey = (event) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  return (
+    <header className="fixed top-0 z-50 w-full border-b border-line bg-[color:var(--bg)]/85 backdrop-blur-md">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-[60] focus:rounded focus:bg-elevated focus:px-3 focus:py-2"
+      >
+        Skip to content
+      </a>
+      <nav
+        className="mx-auto flex max-w-page items-center justify-between px-5 py-3 sm:px-8"
+        aria-label="Primary"
+      >
+        <a href="#home" className="font-display text-xl tracking-tight text-ink">
+          HB
+          <span className="sr-only">{profile.name} home</span>
+        </a>
+
+        <ul className="hidden items-center gap-7 lg:flex">
+          {navLinks.map((link) => (
+            <li key={link.href}>
               <a
-                href={`#${link.toLowerCase()}`}
-                className="hover:text-indigo-500 relative group"
+                href={link.href}
+                className="text-sm text-muted transition-colors hover:text-ink"
               >
-                {link}
-                <span className="block h-0.5 bg-indigo-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300"></span>
+                {link.label}
               </a>
             </li>
           ))}
         </ul>
 
-        {/* Theme & Mobile Toggle Group */}
-        <div className="flex items-center gap-4 md:gap-6">
-          {/* Theme toggle button */}
+        <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-            className="text-gray-800 dark:text-white bg-white/10 hover:bg-white/20 rounded-full p-2 transition"
+            className="rounded-full border border-line p-2 text-ink transition-colors hover:border-accent"
+            aria-label={
+              theme === "light" ? "Switch to dark mode" : "Switch to light mode"
+            }
           >
             {theme === "light" ? (
-              <FaRegMoon size={20} />
+              <FaRegMoon size={16} aria-hidden="true" />
             ) : (
-              <IoSunnyOutline size={20} />
+              <IoSunnyOutline size={16} aria-hidden="true" />
             )}
           </button>
-
-          {/* Mobile Menu Toggle */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="text-2xl text-gray-800 dark:text-white"
-            >
-              {menuOpen ? <FiX /> : <FiMenu />}
-            </button>
-          </div>
+          <button
+            type="button"
+            className="rounded-full border border-line p-2 text-ink lg:hidden"
+            onClick={() => setMenuOpen((open) => !open)}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-nav"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+          >
+            {menuOpen ? <FiX size={18} /> : <FiMenu size={18} />}
+          </button>
         </div>
-      </div>
+      </nav>
 
-      {/* Mobile Dropdown */}
-      {menuOpen && (
-        <motion.ul
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="md:hidden flex flex-col gap-4 px-6 pb-6 text-left bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-200"
+      {menuOpen ? (
+        <div
+          id="mobile-nav"
+          className="border-t border-line bg-[color:var(--bg)] px-5 py-6 lg:hidden"
         >
-          {navLinks.map((link, i) => (
-            <li key={i}>
-              <a
-                href={`#${link.toLowerCase()}`}
-                className="block py-2 border-b border-gray-200 dark:border-gray-700"
-                onClick={() => setMenuOpen(false)}
-              >
-                {link}
-              </a>
-            </li>
-          ))}
-        </motion.ul>
-      )}
-    </motion.nav>
+          <ul className="flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="block min-h-11 py-3 text-lg text-ink"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+    </header>
   );
 }

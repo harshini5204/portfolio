@@ -1,3 +1,107 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --bg: #f4f1ea;
+  --bg-elevated: #fffdf8;
+  --ink: #161513;
+  --muted: #5f5c56;
+  --line: #ddd6c8;
+  --accent: #b4532a;
+  --accent-soft: rgba(180, 83, 42, 0.12);
+  --focus: #1d4ed8;
+}
+
+.dark {
+  --bg: #0f100f;
+  --bg-elevated: #171816;
+  --ink: #efece4;
+  --muted: #a8a49a;
+  --line: #2c2b27;
+  --accent: #e8a87c;
+  --accent-soft: rgba(232, 168, 124, 0.12);
+  --focus: #93c5fd;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  font-feature-settings: "ss01" on;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.font-display {
+  font-family: "Instrument Serif", Georgia, serif;
+}
+
+.font-mono {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+.hairline {
+  border-color: var(--line);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes hop {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.hop-pulse {
+  animation: hop 1.8s ease-in-out infinite;
+}
+
+@keyframes packet {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
